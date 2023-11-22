@@ -3,6 +3,8 @@ const { productsSevice, salesService } = require('./services');
 
 const app = express();
 
+app.use(express.json());
+
 // não remova esse endpoint, é para o avaliador funcionar.
 app.get('/', (_request, response) => {
   response.json({ status: 'Store Manager UP!' });
@@ -34,6 +36,12 @@ app.get('/sales/:id', async (req, res) => {
     return res.status(404).json(serviceResponse.data);
   }
   return res.status(200).json(serviceResponse.data);
+});
+
+app.post('/products', async (req, res) => {
+  const { name } = req.body;
+  const serviceResponse = await productsSevice.requestProduct(name);
+  return res.status(201).json(serviceResponse.data);
 });
 
 module.exports = app;
