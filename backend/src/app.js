@@ -1,5 +1,7 @@
 const express = require('express');
 const { productsSevice, salesService } = require('./services');
+const { validateProduct } = require('./middlewares/validateProducts');
+const { productsController } = require('./controllers');
 
 const app = express();
 
@@ -38,7 +40,7 @@ app.get('/sales/:id', async (req, res) => {
   return res.status(200).json(serviceResponse.data);
 });
 
-app.post('/products', async (req, res) => {
+app.post('/products', validateProduct, productsController.createProduct, async (req, res) => {
   const { name } = req.body;
   const serviceResponse = await productsSevice.requestProduct(name);
   return res.status(201).json(serviceResponse.data);

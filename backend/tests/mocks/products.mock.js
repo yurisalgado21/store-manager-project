@@ -16,8 +16,20 @@ const productFromDB = {
 
 const productNotFoundFromDB = { status: 'NOT_FOUND', message: 'Product not found' };
 
+const productFromCreated = {
+  id: 5,
+  name: 'Traje Demolidor',
+};
+
+const productFromService = {
+  status: 'CREATED',
+  data: productFromCreated,
+};
+
 module.exports = {
   productFromDB,
   productsFromDB,
   productNotFoundFromDB,
+  productFromService,
+  productFromCreated,
 };
