@@ -5,8 +5,8 @@ const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 const validateMiddleware = require('../../../src/middlewares/validateSales');
 const { salesService } = require('../../../src/services');
-const { salesController } = require('../../../src/controllers');
-const { salesData, salesResult } = require('../../mocks/sales.mock');
+// const { salesController } = require('../../../src/controllers');
+const { salesResult } = require('../../mocks/sales.mock');
 
 chai.use(sinonChai);
 
