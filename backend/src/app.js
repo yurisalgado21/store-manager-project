@@ -1,7 +1,8 @@
 const express = require('express');
 const { productsSevice, salesService } = require('./services');
 const { validateProduct } = require('./middlewares/validateProducts');
-const { productsController } = require('./controllers');
+const { validateSales } = require('./middlewares/validateSales');
+const { productsController, salesController } = require('./controllers');
 
 const app = express();
 
@@ -46,7 +47,7 @@ app.post('/products', validateProduct, productsController.createProduct, async (
   return res.status(201).json(serviceResponse.data);
 });
 
-app.post('/sales', async (req, res) => {
+app.post('/sales', validateSales, salesController.createSalesProduct, async (req, res) => {
   const salesArray = req.body;
   const serviceResponse = await salesService.createSales(salesArray);
   return res.status(201).json(serviceResponse.data);
