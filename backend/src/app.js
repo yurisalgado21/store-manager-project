@@ -46,4 +46,10 @@ app.post('/products', validateProduct, productsController.createProduct, async (
   return res.status(201).json(serviceResponse.data);
 });
 
+app.post('/sales', async (req, res) => {
+  const salesArray = req.body;
+  const serviceResponse = await salesService.createSales(salesArray);
+  return res.status(201).json(serviceResponse.data);
+});
+
 module.exports = app;
