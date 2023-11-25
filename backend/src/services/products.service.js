@@ -17,8 +17,15 @@ const requestProduct = async (nameProduct) => {
   return { status: 'CREATED', data: newProduct };
 };
 
+const updateProducts = async (id, name) => {
+  await productsModel.update(id, name);
+  const updatedProduct = await productsModel.findById(id);
+  return { status: 'SUCCESSFUL', data: updatedProduct };
+};
+
 module.exports = {
   findAllProducts,
   findById,
   requestProduct,
+  updateProducts,
 };

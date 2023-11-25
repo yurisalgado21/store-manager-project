@@ -26,10 +26,18 @@ const productFromService = {
   data: productFromCreated,
 };
 
+const productForUpdate = {
+  name: 'Machado do Thor Stormbreaker',
+};
+
+const productUpdated = { id: 1, name: 'Machado do Thor Stormbreaker' };
+
 module.exports = {
   productFromDB,
   productsFromDB,
   productNotFoundFromDB,
   productFromService,
   productFromCreated,
+  productForUpdate,
+  productUpdated,
 };
