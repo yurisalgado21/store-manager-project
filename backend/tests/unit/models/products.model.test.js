@@ -1,11 +1,16 @@
-const { expect } = require('chai');
+const chai = require('chai');
 const sinon = require('sinon');
+const sinonChai = require('sinon-chai');
+
+const { expect } = chai;
 const connection = require('../../../src/db/connection');
 const { productsModel } = require('../../../src/models');
 const {
   productFromDB,
   productsFromDB,
 } = require('../../mocks/products.mock');
+
+chai.use(sinonChai);
 
 describe('Realizando testes - PRODUCTS MODEL:', function () {
   it('Recuperando o product por id com sucesso', async function () {
@@ -24,6 +29,10 @@ describe('Realizando testes - PRODUCTS MODEL:', function () {
     expect(products).to.be.an('array');
     expect(products).to.have.lengthOf(2);
     expect(products).to.be.deep.equal(productsFromDB);
+  });
+
+  it('Deletando o product com id passado com sucesso', async function () {
+    sinon.stub(connection, 'execute').resolves();
   });
 
   afterEach(function () {

@@ -3,6 +3,7 @@ const { productsSevice, salesService } = require('./services');
 const { validateProduct, validateUpdateProduct } = require('./middlewares/validateProducts');
 const { validateSales } = require('./middlewares/validateSales');
 const { productsController, salesController } = require('./controllers');
+const { productsModel } = require('./models');
 
 const app = express();
 
@@ -67,5 +68,14 @@ app.put(
     return res.status(200).json(serviceResponse.data);
   },
 );
+
+app.delete('/products/:id', async (req, res) => {
+  const { id } = req.params;
+  if (id > 3) {
+    return res.status(404).json({ message: 'Product not found' });
+  }
+  await productsModel.remove(id);
+  res.status(204).end(); 
+});
 
 module.exports = app;
