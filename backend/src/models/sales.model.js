@@ -68,12 +68,20 @@ const i = async () => {
   
 };
 
+const remove = async (id) => {
+  await connection.execute(
+    'DELETE FROM sales WHERE id = ?',
+    [id],
+  );
+};
+
 module.exports = {
   findSalesById,
   findAllSales,
   insert,
   createDateInsert,
   returnSalesById,
+  remove,
   s,
   e,
   r,
